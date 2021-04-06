@@ -1,7 +1,7 @@
 import os
 import re
 
-corpus = 'aa.txt'
+corpus = 'corpus\\aa.txt'
 
 first_words = {}
 second_words = {}
@@ -56,7 +56,7 @@ def train_markov():
                 if(i==1):
                     add_to_dict(second_words,prev_word,word)
                 #else add second_prev_wordand prev_word as key and word as value
-                else:  
+                else:
                     second_prev_word = words[i-2]
                     #print(second_prev_word,prev_word,word)
                     add_to_dict(transitions, (second_prev_word,prev_word),word)
