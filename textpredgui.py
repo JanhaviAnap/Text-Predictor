@@ -2,22 +2,25 @@ from tkinter import *
 import textpredmarkov
 
 #INITIALIZATIONS
-bgcolor = "#183d3d"#"#071212"#"#121212"
+bgcolor = "#71c5c6"#"#44a9ab"#"#071212"#"#183d3d"##"#121212"
 fgcolor = "#ffffff"
-inpbgcolor = "#204f4f"# "#0d1f20"#"#1f1f1f"
-inphlcolor = "#276162"#"#122d2e"
-n1color = "#3c9799"
-n2color = "#358586"
-n3color = "#2e7374"
+inpbgcolor = "#d8eff0"#"#204f4f"# "#0d1f20"#"#1f1f1f"
+inphlcolor = "#4cb6b8"#"#276162"#"#122d2e"
+inpfg = "#000000"
+n1color = "#5abcbe"#"#3c9799"
+n2color = "#68c1c3"#"#358586"
+n3color = "#76c7c9"#"#2e7374"
 cacolor = "#44a9ab"
 #trains the model before every launch
 textpredmarkov.train_markov()
+"""
 print("----------------Markov Data Model----------------")
 print(textpredmarkov.first_words)
 print()
 print(textpredmarkov.second_words)
 print()
 print(textpredmarkov.transitions)
+"""
 
 box = Tk()
 box.geometry("400x250")
@@ -50,6 +53,7 @@ def update(suggest):
 
 def my_tracer(a,b,c):
     #print(a,b,c)
+    #print(str(inputText.get()))
     suggest = []
     expression = str(inputText.get())
     explist = expression.strip().lower().split()
@@ -69,9 +73,9 @@ def btnClear():
     expression = ""
     inputText.set("")
 
-def btnClick(opr):
+def btnClick(txtvar):
     global expression
-    expression = str(inputText.get()) + str(opr.get()) + " "
+    expression = str(inputText.get()) + str(txtvar.get()) + " "
     inputText.set(expression)
     inputField.icursor(END)
 
@@ -89,6 +93,7 @@ def btnAdd():
 
 inputText = StringVar()
 inputText.trace('w', my_tracer)
+
 if(str(inputText.get())==""):
     initword = textpredmarkov.suggest_first_words()
     update(initword)
@@ -96,7 +101,7 @@ if(str(inputText.get())==""):
 inputFrame = Frame(box,width=400,height=50)
 inputFrame.configure(bg=bgcolor)
 inputFrame.pack()
-inputField = Entry(inputFrame,font=('arial',10,'bold'),textvariable=inputText,width=300,bg=inpbgcolor,fg=fgcolor,justify=RIGHT,relief="raised",bd=0,highlightbackground=inphlcolor,highlightcolor=bgcolor,highlightthickness=3)
+inputField = Entry(inputFrame,font=('arial',10,'bold'),textvariable=inputText,width=300,bg=inpbgcolor,fg=inpfg,justify=RIGHT,relief="raised",bd=0,highlightbackground=inphlcolor,highlightcolor=bgcolor,highlightthickness=3)
 inputField.grid(row=0,column=0)
 inputField.pack(ipady=10)#pady=10,ipady=10
 

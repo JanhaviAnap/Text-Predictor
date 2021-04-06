@@ -50,13 +50,13 @@ def train_markov():
                 #get the previous word
                 prev_word = words[i-1]
                 # if it is the last word add it to transitions dictionary with suggestion with end of sentence
-                if(i==(no_of_words-1)):
-                    add_to_dict(transitions,(prev_word,word),".")
+                #if(i==(no_of_words-1)):
+                #    add_to_dict(transitions,(prev_word,word),".")
                 #if it is a second word add to second_words dictionary
                 if(i==1):
                     add_to_dict(second_words,prev_word,word)
                 #else add second_prev_wordand prev_word as key and word as value
-                else:
+                else:  
                     second_prev_word = words[i-2]
                     #print(second_prev_word,prev_word,word)
                     add_to_dict(transitions, (second_prev_word,prev_word),word)
